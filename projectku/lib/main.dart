@@ -8,76 +8,114 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Biodata Mahasiswa',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Biodata saya'),
+        ),
+        body: BiodataPage(),
       ),
-      home: BiodataScreen(),
     );
   }
 }
 
-class BiodataScreen extends StatelessWidget {
+class BiodataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Mendapatkan ukuran layar agar responsif
-    var screenSize = MediaQuery.of(context).size;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Biodata Mahasiswa'),
-      ),
-      body: Center(
-        child: Container(
-          width: screenSize.width * 0.9, // Sesuaikan dengan lebar layar
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Foto Profil Mahasiswa
-              CircleAvatar(
-                radius: screenSize.width * 0.2, // Ukuran menyesuaikan layar
-                backgroundImage: NetworkImage(
-                  'https://www.example.com/path/to/photo.jpg', // Ganti URL dengan foto mahasiswa
-                ),
+    return Center(
+      child: Container(
+        padding: EdgeInsets.all(20),
+        margin: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage(
+                  'assets/foto.jpg'), // Place your photo in assets folder
+            ),
+            SizedBox(height: 15),
+            Text(
+              'I Gusti Nathan Agung Tanaka',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(height: 20),
-              // Nama Mahasiswa
-              Text(
-                'Nama Mahasiswa',
+            ),
+            SizedBox(height: 10),
+            Text(
+              'NIM: 42230038',
+              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+            ),
+            Text(
+              'Prodi: Teknologi Informasi',
+              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+            ),
+            Text(
+              'Fakultas: Teknik Informatika (FTI)',
+              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'saya adalah orang yang ingin dan mau untuk belajar. dan mampu untuk mengetahui kesalahan saya sendiri',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 20),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Kemampuan:',
                 style: TextStyle(
-                  fontSize: screenSize.width * 0.06, // Menyesuaikan ukuran font
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10),
-              // NIM
-              Text(
-                'NIM: 1234567890',
-                style: TextStyle(
-                  fontSize: screenSize.width * 0.05,
-                ),
-              ),
-              SizedBox(height: 10),
-              // Jurusan
-              Text(
-                'Jurusan: Teknik Informatika',
-                style: TextStyle(
-                  fontSize: screenSize.width * 0.05,
-                ),
-              ),
-              SizedBox(height: 20),
-              // Informasi Tambahan (Opsional)
-              Text(
-                'Universitas: Universitas XYZ\nAngkatan: 2021\nHobi: Membaca, Coding, Bermain Musik',
-                style: TextStyle(
-                  fontSize: screenSize.width * 0.04,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+            ),
+            SizedBox(height: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SkillItem(skill: 'Programming'),
+                SkillItem(skill: 'Web Design'),
+                SkillItem(skill: 'Data Analysis'),
+              ],
+            ),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class SkillItem extends StatelessWidget {
+  final String skill;
+
+  SkillItem({required this.skill});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.blueGrey[50],
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Text(
+        skill,
+        style: TextStyle(fontSize: 16),
       ),
     );
   }
