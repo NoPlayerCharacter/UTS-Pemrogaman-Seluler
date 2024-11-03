@@ -10,7 +10,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Biodata saya'),
+          centerTitle: true, // Centers the title
+          title: Text(
+            'Biodata saya',
+            style: TextStyle(
+              fontSize: 24, // Adjusts the font size of the title
+              fontWeight: FontWeight.bold, // Optional: makes the text bold
+            ),
+          ),
         ),
         body: BiodataPage(),
       ),
