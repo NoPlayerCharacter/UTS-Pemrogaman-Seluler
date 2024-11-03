@@ -49,8 +49,8 @@ class BiodataPage extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundImage: NetworkImage(
-                  'https://example.com/path/to/your-image.jpg'), // Ganti URL dengan URL gambar yang ingin ditampilkan
+              backgroundImage: AssetImage(
+                  'assets/nathan.jpg'), // Place your photo in assets folder
             ),
             SizedBox(height: 15),
             Text(
